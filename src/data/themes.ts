@@ -14,7 +14,7 @@ const sgFood: Theme = {
     zh: '许多长辈从小吃到大的小贩美食——充满味道、香气和回忆。',
   },
   icon: '🍜',
-  accent: 'amber',
+  accent: 'coral',
   cards: [
     { id: 'hainan-chicken-rice', image: '/cards/sg-food/hainan-chicken-rice.png', name: { en: 'Hainanese Chicken Rice', zh: '海南鸡饭' } },
     { id: 'laksa', image: '/cards/sg-food/laksa.png', name: { en: 'Laksa', zh: '叻沙' } },
@@ -102,7 +102,7 @@ const animals: Theme = {
     zh: '来自动物园、农场和远方的可爱动物——容易认得，叫出名字也很有趣。',
   },
   icon: '🦁',
-  accent: 'emerald',
+  accent: 'teal',
   cards: [
     { id: 'lion', image: '/cards/animals/lion.png', name: { en: 'Lion', zh: '狮子' } },
     { id: 'elephant', image: '/cards/animals/elephant.png', name: { en: 'Elephant', zh: '大象' } },

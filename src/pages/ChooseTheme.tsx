@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { THEMES } from '../data/themes'
 import { useApp } from '../state'
 import { PageHeader } from '../components/common'
+import { accent } from '../util/accents'
 
 export default function ChooseTheme() {
   const { selectedThemeId, setSelectedThemeId } = useApp()
@@ -20,51 +21,65 @@ export default function ChooseTheme() {
         intro="Pick one familiar theme for the whole session. The pictures you see here are the same ones used in both the memory game and the riddle clues."
       />
 
-      <div className="grid gap-6 sm:grid-cols-2">
+      <div className="grid gap-7 sm:grid-cols-2">
         {THEMES.map((theme) => {
           const isSelected = selectedThemeId === theme.id
           const preview = theme.cards.slice(0, 4)
+          const a = accent(theme.accent)
           return (
             <button
               key={theme.id}
               onClick={() => choose(theme.id)}
-              className={`group flex flex-col rounded-3xl border-2 bg-white p-6 text-left transition-all hover:shadow-md ${
-                isSelected ? 'border-clay-500 ring-2 ring-clay-200' : 'border-clay-100'
+              className={`group flex flex-col overflow-hidden rounded-card border bg-surface text-left shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift ${
+                isSelected
+                  ? 'border-2 border-primary ring-4 ring-primary/15'
+                  : 'border-line'
               }`}
             >
-              <div className="flex items-center gap-3">
-                <span aria-hidden className="text-4xl">
+              {/* Accent header */}
+              <div className={`${a.gradient} flex items-center gap-4 px-6 py-5`}>
+                <span
+                  aria-hidden
+                  className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/25 text-3xl backdrop-blur"
+                >
                   {theme.icon}
                 </span>
                 <div>
-                  <h2 className="text-2xl font-extrabold text-ink">{theme.name.en}</h2>
-                  <p lang="zh" className="text-lg font-bold text-ink-soft">
+                  <h2 className="text-2xl font-extrabold text-white">{theme.name.en}</h2>
+                  <p lang="zh" className="text-lg font-bold text-white/90">
                     {theme.name.zh}
                   </p>
                 </div>
               </div>
-              <p className="mt-3 text-base text-ink-soft">{theme.blurb.en}</p>
-              <p lang="zh" className="mt-1 text-base text-ink-soft">
-                {theme.blurb.zh}
-              </p>
 
-              <div className="mt-4 grid grid-cols-4 gap-2">
-                {preview.map((card) => (
-                  <img
-                    key={card.id}
-                    src={card.image}
-                    alt={card.name.en}
-                    className="aspect-square w-full rounded-xl border border-clay-100 object-cover"
-                  />
-                ))}
+              <div className="flex flex-1 flex-col p-6">
+                <p className="text-base text-body">{theme.blurb.en}</p>
+                <p lang="zh" className="mt-1 text-base text-muted">
+                  {theme.blurb.zh}
+                </p>
+
+                <div className="mt-5 grid grid-cols-4 gap-2.5">
+                  {preview.map((card) => (
+                    <img
+                      key={card.id}
+                      src={card.image}
+                      alt={card.name.en}
+                      className="aspect-square w-full rounded-inner border border-line object-cover"
+                    />
+                  ))}
+                </div>
+
+                <div className="mt-6 flex items-center justify-between gap-3">
+                  <span
+                    className={`inline-flex min-h-[3rem] items-center gap-2 rounded-full px-6 py-3 text-base font-bold text-white shadow-soft transition-transform group-hover:-translate-y-0.5 ${a.chipBg}`}
+                  >
+                    {isSelected ? 'Selected — open plan' : 'Use this theme'} →
+                  </span>
+                  <span className={`text-sm font-semibold ${a.text}`}>
+                    {theme.cards.length} cards · {theme.riddles.length} riddles
+                  </span>
+                </div>
               </div>
-
-              <span className="mt-5 inline-flex items-center gap-2 self-start rounded-2xl bg-clay-600 px-5 py-2.5 text-lg font-bold text-white transition-colors group-hover:bg-clay-700">
-                {isSelected ? 'Selected — open plan' : 'Use this theme'} · 选这个 →
-              </span>
-              <span className="mt-2 text-sm text-ink-soft">
-                {theme.cards.length} picture cards · {theme.riddles.length} riddles
-              </span>
             </button>
           )
         })}

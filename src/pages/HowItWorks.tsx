@@ -1,6 +1,8 @@
 import { LADDER } from '../data/ladder'
 import { BiText, ButtonLink, Card, ConsentReminder, PageHeader } from '../components/common'
 
+const RUNG_AVATAR = ['bg-primary/10', 'bg-coral/15', 'bg-teal/15']
+
 const STEPS = [
   {
     icon: '🎨',
@@ -44,24 +46,22 @@ export default function HowItWorks() {
       <ol className="space-y-5">
         {STEPS.map((step, i) => (
           <li key={step.title}>
-            <Card className="flex gap-5">
-              <div className="flex flex-col items-center">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-clay-600 text-xl font-extrabold text-white">
-                  {i + 1}
-                </span>
-              </div>
+            <Card className="flex items-start gap-5 transition-transform hover:-translate-y-0.5">
+              <span className="gradient-primary flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-xl font-extrabold text-white shadow-soft">
+                {i + 1}
+              </span>
               <div>
-                <h3 className="text-xl font-extrabold text-ink">
+                <h3 className="text-xl font-extrabold text-heading">
                   <span aria-hidden className="mr-2">
                     {step.icon}
                   </span>
                   {step.title}
                 </h3>
-                <p lang="zh" className="text-lg font-bold text-ink-soft">
+                <p lang="zh" className="text-lg font-bold text-muted">
                   {step.zh}
                 </p>
-                <p className="mt-2 text-base text-ink-soft">{step.body}</p>
-                <p lang="zh" className="mt-1 text-base text-ink-soft">
+                <p className="mt-2 text-base text-body">{step.body}</p>
+                <p lang="zh" className="mt-1 text-base text-muted">
                   {step.bodyZh}
                 </p>
               </div>
@@ -71,21 +71,26 @@ export default function HowItWorks() {
       </ol>
 
       <section>
-        <h2 className="text-2xl font-extrabold text-ink">
+        <h2 className="text-2xl font-extrabold text-heading">
           Meeting everyone where they are · 因人而异，量力而为
         </h2>
-        <p className="mt-2 max-w-2xl text-lg text-ink-soft">
+        <p className="mt-2 max-w-2xl text-lg text-body">
           Throughout every step, watch which rung of the ladder each senior is
           comfortable on. All three are equally valuable.
         </p>
-        <div className="mt-6 grid gap-4 sm:grid-cols-3">
-          {LADDER.map((rung) => (
+        <div className="mt-6 grid gap-5 sm:grid-cols-3">
+          {LADDER.map((rung, i) => (
             <div
               key={rung.level}
-              className="rounded-2xl border border-clay-100 bg-white p-5"
+              className="flex items-center gap-3 rounded-card border border-line bg-surface p-5 shadow-soft"
             >
-              <div className="text-3xl">{rung.icon}</div>
-              <h3 className="mt-1 text-lg font-extrabold text-ink">
+              <span
+                aria-hidden
+                className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-2xl ${RUNG_AVATAR[i]}`}
+              >
+                {rung.icon}
+              </span>
+              <h3 className="text-lg font-extrabold text-heading">
                 <BiText value={rung.title} />
               </h3>
             </div>

@@ -12,15 +12,18 @@ const NAV = [
 export default function Layout() {
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="sticky top-0 z-20 border-b border-clay-100 bg-cream/95 backdrop-blur">
+      <header className="sticky top-0 z-20 border-b border-line bg-lavender/85 backdrop-blur">
         <div className="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-3 sm:px-6">
           <NavLink to="/" className="flex items-center gap-3">
-            <span aria-hidden className="text-3xl">
+            <span
+              aria-hidden
+              className="gradient-primary flex h-11 w-11 items-center justify-center rounded-2xl text-2xl shadow-soft"
+            >
               🪜
             </span>
-            <span className="text-xl font-extrabold leading-none text-ink">
+            <span className="text-xl font-extrabold leading-none text-heading">
               Participation Ladder
-              <span lang="zh" className="block text-sm font-semibold text-ink-soft">
+              <span lang="zh" className="block text-sm font-semibold text-muted">
                 参与阶梯
               </span>
             </span>
@@ -33,10 +36,10 @@ export default function Layout() {
                     to={item.to}
                     end={item.end}
                     className={({ isActive }) =>
-                      `block whitespace-nowrap rounded-xl px-4 py-2 text-base font-bold transition-colors ${
+                      `block whitespace-nowrap rounded-full px-4 py-2 text-base font-semibold transition-all ${
                         isActive
-                          ? 'bg-clay-600 text-white'
-                          : 'text-ink-soft hover:bg-clay-100 hover:text-clay-700'
+                          ? 'gradient-primary text-white shadow-soft'
+                          : 'text-muted hover:bg-primary/10 hover:text-primary'
                       }`
                     }
                   >
@@ -53,8 +56,8 @@ export default function Layout() {
         <Outlet />
       </main>
 
-      <footer className="border-t border-clay-100 bg-sand">
-        <div className="mx-auto max-w-5xl px-4 py-6 text-center text-sm text-ink-soft sm:px-6">
+      <footer className="border-t border-line bg-surface">
+        <div className="mx-auto max-w-5xl px-4 py-6 text-center text-sm text-muted sm:px-6">
           A planning tool for volunteers running inclusive memory-engagement
           activities for seniors. · 为长辈设计的包容性回忆活动规划工具
         </div>

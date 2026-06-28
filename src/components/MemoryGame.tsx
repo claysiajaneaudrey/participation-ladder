@@ -82,17 +82,25 @@ export default function MemoryGame({ theme, cards }: { theme: Theme; cards: Card
   return (
     <div>
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <p className="text-lg font-bold text-ink">
-          Pairs found: {pairsFound} / {cards.length}
-          <span className="ml-3 font-normal text-ink-soft">Moves: {moves}</span>
-        </p>
+        <div className="min-w-[12rem] flex-1">
+          <p className="text-base font-bold text-heading">
+            Pairs found: {pairsFound} / {cards.length}
+            <span className="ml-3 font-medium text-muted">Moves: {moves}</span>
+          </p>
+          <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-primary/10">
+            <div
+              className="gradient-primary h-full rounded-full transition-all duration-300"
+              style={{ width: `${(pairsFound / cards.length) * 100}%` }}
+            />
+          </div>
+        </div>
         <Button variant="secondary" onClick={reset}>
           ↺ Start again <span lang="zh" className="font-normal">重新开始</span>
         </Button>
       </div>
 
       {allMatched && (
-        <div className="mb-4 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-center text-lg font-bold text-emerald-800">
+        <div className="mb-4 rounded-inner border border-primary/30 bg-primary/10 p-4 text-center text-lg font-bold text-primary">
           🎉 All pairs matched — wonderful! 全部配对成功，太棒了！
         </div>
       )}
@@ -107,12 +115,12 @@ export default function MemoryGame({ theme, cards }: { theme: Theme; cards: Card
                 onClick={() => handleFlip(i)}
                 disabled={isUp || busy}
                 aria-label={isUp ? tile.card.name.en : 'Hidden card'}
-                className={`relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-2xl border-2 text-center transition-all ${
+                className={`relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-inner border text-center shadow-sm transition-all ${
                   isUp
                     ? isMatched
-                      ? 'border-emerald-300 bg-white'
-                      : 'border-clay-300 bg-white'
-                    : 'cursor-pointer border-clay-200 bg-clay-100 hover:bg-clay-200'
+                      ? 'border-2 border-primary bg-primary/5'
+                      : 'border-line bg-surface'
+                    : 'cursor-pointer border-line bg-primary/5 hover:-translate-y-0.5 hover:bg-primary/10 hover:shadow-soft'
                 }`}
               >
                 {isUp ? (
@@ -122,19 +130,19 @@ export default function MemoryGame({ theme, cards }: { theme: Theme; cards: Card
                       alt={tile.card.name.en}
                       className="aspect-square w-full rounded-lg object-cover"
                     />
-                    <span className="mt-1 line-clamp-1 text-sm font-bold text-ink">
+                    <span className="mt-1 line-clamp-1 text-sm font-bold text-heading">
                       {tile.card.name.en}
                     </span>
                   </span>
                 ) : (
-                  <span aria-hidden className="text-4xl opacity-70 sm:text-5xl">
+                  <span aria-hidden className="text-4xl opacity-40 sm:text-5xl">
                     {theme.icon}
                   </span>
                 )}
                 {isMatched && (
                   <span
                     aria-hidden
-                    className="absolute right-1.5 top-1.5 text-xl text-emerald-600"
+                    className="absolute right-1.5 top-1.5 flex h-7 w-7 items-center justify-center rounded-full bg-primary text-sm font-bold text-white shadow-soft"
                   >
                     ✓
                   </span>

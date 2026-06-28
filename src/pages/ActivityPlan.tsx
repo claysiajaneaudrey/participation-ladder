@@ -26,17 +26,17 @@ function StepHeading({
 }) {
   return (
     <div className="mb-5 flex items-center gap-4">
-      <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-clay-600 text-xl font-extrabold text-white">
+      <span className="gradient-primary flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-xl font-extrabold text-white shadow-soft">
         {n}
       </span>
       <div>
-        <h2 className="text-2xl font-extrabold text-ink">
+        <h2 className="text-2xl font-extrabold text-heading">
           <span aria-hidden className="mr-2">
             {icon}
           </span>
           {title}
         </h2>
-        <p lang="zh" className="text-lg font-bold text-ink-soft">
+        <p lang="zh" className="text-lg font-bold text-muted">
           {zh}
         </p>
       </div>
@@ -96,14 +96,14 @@ export default function ActivityPlan() {
       {/* STEP 1 — MEMORY GAME */}
       <section>
         <StepHeading n={1} icon="🃏" title="Memory-card game" zh="记忆卡片游戏" />
-        <p className="mb-5 max-w-2xl text-lg text-ink-soft">
+        <p className="mb-5 max-w-2xl text-lg text-body">
           These {memoryCards.length} familiar cards make up today’s deck. Lay them
           face-down and take turns finding matching pairs. Look, point, and name
           them together — no rush.
         </p>
 
         <Card className="mb-6">
-          <h3 className="mb-4 text-lg font-bold text-ink">
+          <h3 className="mb-4 text-lg font-bold text-heading">
             Today’s cards · 今天的卡片
           </h3>
           <ul className="grid grid-cols-3 gap-4 sm:grid-cols-6">
@@ -116,7 +116,7 @@ export default function ActivityPlan() {
         </Card>
 
         <Card>
-          <h3 className="mb-4 text-lg font-bold text-ink">
+          <h3 className="mb-4 text-lg font-bold text-heading">
             ▶ Try the matching game · 试试配对游戏
           </h3>
           <MemoryGame theme={theme} cards={memoryCards} />
@@ -131,7 +131,7 @@ export default function ActivityPlan() {
           title="Riddle game — same pictures"
           zh="猜谜游戏 — 同样的图片"
         />
-        <p className="mb-5 max-w-2xl text-lg text-ink-soft">
+        <p className="mb-5 max-w-2xl text-lg text-body">
           Now the same pictures become clues. Read each riddle aloud and let
           seniors point to the answer they recognise.
         </p>
@@ -144,7 +144,7 @@ export default function ActivityPlan() {
       <section>
         <StepHeading n={3} icon="❤️" title="Invite a memory" zh="邀请分享回忆" />
         <Card>
-          <p className="text-lg text-ink-soft">
+          <p className="text-lg text-body">
             Each picture is a doorway to a story. Use these gentle openers — only
             if the senior wishes to share.
           </p>
@@ -154,10 +154,10 @@ export default function ActivityPlan() {
               .map((p, i) => (
                 <li
                   key={i}
-                  className="rounded-2xl border border-clay-100 bg-clay-50 p-4"
+                  className="rounded-inner border border-line bg-lavender p-4"
                 >
-                  <p className="text-lg font-bold text-ink">{p.text.en}</p>
-                  <p lang="zh" className="text-lg text-ink-soft">
+                  <p className="text-lg font-bold text-heading">{p.text.en}</p>
+                  <p lang="zh" className="text-lg text-muted">
                     {p.text.zh}
                   </p>
                 </li>

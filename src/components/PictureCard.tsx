@@ -17,19 +17,19 @@ export default function PictureCard({
   return (
     <figure className="flex flex-col items-center">
       <div
-        className={`w-full overflow-hidden rounded-2xl border border-clay-100 bg-clay-50 ${pad}`}
+        className={`w-full overflow-hidden rounded-inner border border-line bg-lavender shadow-sm ${pad}`}
       >
         <img
           src={card.image}
           alt={card.name.en}
           loading="lazy"
-          className="aspect-square w-full rounded-xl object-cover"
+          className="aspect-square w-full rounded-lg object-cover"
         />
       </div>
       {showName && (
         <figcaption className="mt-2 text-center leading-tight">
-          <span className="block text-lg font-bold text-ink">{card.name.en}</span>
-          <span lang="zh" className="block text-base text-ink-soft">
+          <span className="block text-base font-bold text-heading">{card.name.en}</span>
+          <span lang="zh" className="block text-sm text-muted">
             {card.name.zh}
           </span>
         </figcaption>

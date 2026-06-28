@@ -1,35 +1,57 @@
 @import 'tailwindcss';
 
 /*
-  Participation Ladder — warm, calm, senior-friendly design system.
-  Mature palette (clay / sand / sage on warm cream), large readable type,
-  generous spacing. Friendly and clear, never childish.
+  Participation Ladder — design system.
+  Soft, dimensional, warm and grown-up: lavender canvas, violet primary,
+  rounded surfaces with gentle layered shadows. Friendly but never childish.
+  All design decisions live here as tokens; components reference the tokens,
+  never raw hex.
 */
 @theme {
-  --color-cream: #fbf7f0;
-  --color-sand: #f3ebdd;
-  --color-clay-50: #fbf3ee;
-  --color-clay-100: #f6e3d7;
-  --color-clay-200: #ecc5ad;
-  --color-clay-400: #d98b5f;
-  --color-clay-500: #c9743f;
-  --color-clay-600: #b25c2c;
-  --color-clay-700: #934a26;
-  --color-ink: #3a322c;
-  --color-ink-soft: #6b6259;
+  /* Surfaces */
+  --color-lavender: #f4f0fc; /* app background */
+  --color-surface: #ffffff;
 
-  --font-sans: 'Nunito', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue',
+  /* Primary (violet) */
+  --color-primary: #6d4aed;
+  --color-primary-light: #7c4dff; /* gradient end   */
+  --color-primary-dark: #5b2a9d; /* gradient start */
+
+  /* Theme accents */
+  --color-coral: #f4845f; /* Local SG Food */
+  --color-coral-dark: #d2653f;
+  --color-teal: #3aa98c; /* Animals       */
+  --color-teal-dark: #2c8670;
+
+  /* Text */
+  --color-heading: #1e1b2e;
+  --color-body: #4a4658;
+  --color-muted: #8b86a0;
+
+  /* Hairline borders */
+  --color-line: #e8e1f6;
+
+  /* Radii */
+  --radius-card: 24px;
+  --radius-inner: 16px;
+
+  /* Soft layered shadows */
+  --shadow-soft: 0 8px 24px rgba(80, 50, 150, 0.12);
+  --shadow-lift: 0 18px 40px rgba(80, 50, 150, 0.2);
+
+  /* Rounded, friendly geometric sans */
+  --font-sans: 'Poppins', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue',
     Arial, sans-serif;
 }
 
-/* Larger base size so the whole UI scales up for older eyes. */
+/* Comfortable, slightly enlarged base size for readability. */
 html {
-  font-size: 18px;
+  font-size: 17px;
 }
 
 body {
-  background-color: var(--color-cream);
-  color: var(--color-ink);
+  background-color: var(--color-lavender);
+  color: var(--color-body);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   line-height: 1.6;
@@ -37,8 +59,33 @@ body {
 
 /* Clear, high-contrast focus ring for keyboard users. */
 :focus-visible {
-  outline: 3px solid var(--color-clay-500);
+  outline: 3px solid var(--color-primary);
   outline-offset: 2px;
+}
+
+/* ---- Gradient fills (referenced by name, no hex in components) ---- */
+.gradient-primary {
+  background-image: linear-gradient(
+    135deg,
+    var(--color-primary-dark) 0%,
+    var(--color-primary-light) 100%
+  );
+}
+.gradient-coral {
+  background-image: linear-gradient(135deg, #f4845f 0%, #f6a982 100%);
+}
+.gradient-teal {
+  background-image: linear-gradient(135deg, #3aa98c 0%, #5fc3a8 100%);
+}
+
+/* Soft decorative blob used sparingly behind hero/CTA surfaces. */
+.blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(48px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* Respect users who prefer reduced motion. */
