@@ -1,0 +1,52 @@
+@import 'tailwindcss';
+
+/*
+  Participation Ladder — warm, calm, senior-friendly design system.
+  Mature palette (clay / sand / sage on warm cream), large readable type,
+  generous spacing. Friendly and clear, never childish.
+*/
+@theme {
+  --color-cream: #fbf7f0;
+  --color-sand: #f3ebdd;
+  --color-clay-50: #fbf3ee;
+  --color-clay-100: #f6e3d7;
+  --color-clay-200: #ecc5ad;
+  --color-clay-400: #d98b5f;
+  --color-clay-500: #c9743f;
+  --color-clay-600: #b25c2c;
+  --color-clay-700: #934a26;
+  --color-ink: #3a322c;
+  --color-ink-soft: #6b6259;
+
+  --font-sans: 'Nunito', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue',
+    Arial, sans-serif;
+}
+
+/* Larger base size so the whole UI scales up for older eyes. */
+html {
+  font-size: 18px;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+/* Clear, high-contrast focus ring for keyboard users. */
+:focus-visible {
+  outline: 3px solid var(--color-clay-500);
+  outline-offset: 2px;
+}
+
+/* Respect users who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
